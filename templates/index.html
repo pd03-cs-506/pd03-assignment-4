@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSA Search Engine | Laya Dang</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+
+<body>
+    <h1>Latent Semantic Analysis (LSA) Search Engine</h1>
+
+    <form id="searchForm" method="POST">
+        <input type="text" id="query" name="query" placeholder="Enter search query" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <h3>Search Results:</h3>
+    <div class="results">
+        {% if results is not none %}
+        {% for document, similarity, indices in results %}
+        <div class="document-box">
+            <strong>Document {{indices}}</strong> <br>
+
+            <pre>{{ document[0][:600]}}...</pre>
+
+            <p><strong>Similarity: {{ similarity }}</strong></p>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    {% if show_image %}
+    <img src="{{ url_for('static', filename='result.png') }}">
+    {% endif %}
+
+</body>
+</html>
