@@ -24,6 +24,7 @@ jobs:
 
     - name: Install dependencies via make
       run: |
+        python -m venv venv
         make install
     
     - name: Run server
